@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Nav() {
   return (
     <nav className="nav">
@@ -7,8 +9,8 @@ function Nav() {
           <h4>ResumeRush</h4>
         </div>
         <div className="flex nav-actions">
-          <a href="/login" className="nav-link">Login</a>
-          <button type="button" className="btn btn-primary">Get started</button>
+          <Link to="/login" className="nav-link">Login</Link>
+          <button type="button" className="btn btn-primary"><Link to='/register' style={{color: "#fff", textDecoration: 'none'}}>Get started</Link></button>
         </div>
       </div>
     </nav>
