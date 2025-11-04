@@ -26,7 +26,6 @@ function Register() {
       return;
     }
 
-        
 
         if(password.length < 8){
             toast.error("Password must be at least 8 characters long!");

@@ -9,6 +9,8 @@ import Nav from './components/Nav';
 import ProcessOverview from './components/ProcessOverview';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import DashboardLayout from './layouts/DashboardLayout';
 
 function App() {
   return (
@@ -30,6 +32,9 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route element={<DashboardLayout />} >
+          <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
 
           </Routes>
       </BrowserRouter>
