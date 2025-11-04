@@ -133,7 +133,7 @@ a:focus {
 }
 
 /* Form Elements */
-input, select, textarea {
+/* input, select, textarea {
   font-family: inherit;
   font-size: 1rem;
   padding: 0.5rem;
@@ -149,7 +149,36 @@ select:focus,
 textarea:focus {
   border-color: var(--color-primary);
   outline: none;
+} */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  background-color: #ffffff; 
+  color: #111827; 
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
+
+input:focus,
+textarea:focus {
+  border-color: #6366f1; 
+  background-color: #fff; 
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-size: .8rem;
+  color: #6b7280; 
+  font-weight: 500; 
+  opacity: 1; 
+}
+
 
 /* Responsive Breakpoints */
 @media (max-width: 768px) {

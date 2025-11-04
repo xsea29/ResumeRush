@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Hero(){
     return (
         <div className="hero flex-column">
@@ -6,7 +8,9 @@ function Hero(){
             <p>Upload your resume once and share it with recruiters via email or WhatsApp in seconds. Keep track of all your sharing activity in one place.</p>
             <div className="button-group">
                 <button type="button" className="btn btn-primary">Get Started Free</button>
-                <button type="button" className="btn btn-secondary">Sign In</button>
+                <button type="button" className="btn btn-secondary">
+                    <Link to="/login" style={{textDecoration: "none", color: "inherit"}}>Sign In</Link>
+                </button>
             </div>
         </div>
     );
