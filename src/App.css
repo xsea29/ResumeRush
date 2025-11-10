@@ -613,30 +613,352 @@
 
 .sign-out {
   border: none;
-  background: none;
+  background: #fff;
   cursor: pointer;
-  padding: 8px 12px;
-  border:1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
 }
 
 .sign-out:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background: #f8f8f8;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
 }
 
 .sign-out-link {
   display: flex;
   align-items: center;
-  gap: 4px; 
-  color: #000;
+  gap: 8px; 
+  color: #222;
   text-decoration: none;
   font-weight: 600;
-  
+  font-size: 15px;
 }
 
 .sign-out-link:hover {
   color: #000;
   text-decoration: none;
+}
+
+.upload-container {
+  max-width: 900px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 30px 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.upload-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.upload-box h3 {
+  font-size: 1.1rem;
+  margin-bottom: 3px;
+}
+
+.small-text {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.label-text {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.hint-text {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.upload-dropzone {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  text-align: center;
+  padding: 30px 10px;
+  margin-bottom: 20px;
+  transition: border-color 0.3s;
+}
+
+.upload-dropzone:hover {
+  border-color: #000;
+}
+
+.dropzone-label {
+  cursor: pointer;
+  display: block;
+  color: #555;
+}
+
+.dropzone-label span {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.note-box {
+  display: flex;
+  background-color: #f1f7ff;
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-top: 10px;
+  color: #004085;
+  border: 1px solid #cce5ff;
+  font-size: 0.9rem;
+}
+
+.info-icon {
+  margin-right: 10px;
+  margin-top: 4px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.cancel-btn,
+.upload-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #f5f5f5;
+  color: #555;
+}
+
+.upload-btn {
+  background-color: #555;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.6;
+}
+
+.upload-btn:disabled {
+  cursor: not-allowed;
+}
+
+.share-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  color: #222;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+}
+
+.card-desc {
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.resume-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #f7f9fc;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.resume-icon {
+  font-size: 32px;
+  color: #000;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.share-btn {
+  flex: 1;
+  border: 2px solid #ccc;
+  background: white;
+  border-radius: 8px;
+  padding: 15px 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.share-btn:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.share-btn.active {
+  background: #000;
+  color: white;
+  border-color: #000;
+}
+
+.share-form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.share-form input,
+.share-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.share-form textarea {
+  resize: none;
+  height: 90px;
+}
+
+.primary-btn {
+  background: #000;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.primary-btn:hover {
+  background: #000;
+}
+
+.primary-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.share-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.share-list li {
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid #eee;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.icon {
+  margin-right: 10px;
+  color: #666;
+}
+
+.details {
+  flex: 1;
+}
+
+.details strong {
+  font-size: 15px;
+}
+
+.details span {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #888;
+  gap: 5px;
+}
+
+.tag {
+  font-size: 12px;
+  text-transform: capitalize;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #e6e6e6;
+}
+
+.tag.email {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.tag.whatsapp {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* Loader */
+.loader-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.spinner {
+  font-size: 36px;
+  color: #007bff;
+  animation: spin 1s linear infinite;
+}
+
+.spin {
+  margin-right: 5px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

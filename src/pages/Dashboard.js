@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { FaUpload, FaShareAlt, FaFileAlt } from "react-icons/fa";
 import Loader from "../components/Loader";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(()=>{
     setTimeout(()=>{
@@ -57,7 +59,7 @@ function Dashboard() {
         <div className="resume-empty">
           <FaFileAlt className="resume-icon" />
           <p>No resumes uploaded yet</p>
-          <button className="upload-btn">
+          <button className="upload-btn" onClick={() => navigate('/uploads')}>
             <FaUpload /> Upload Your First Resume
           </button>
         </div>

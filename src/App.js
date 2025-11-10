@@ -11,6 +11,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import DashboardLayout from './layouts/DashboardLayout';
+import UploadResume from './pages/UploadResume';
+import ShareResume from './pages/ShareResume';
 
 function App() {
   return (
@@ -34,7 +36,13 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route element={<DashboardLayout />} >
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/uploads" element={<UploadResume />} />
+          <Route path="/share" element={<ShareResume />} />
+
           </Route>
+          {/* <Route  element={<DashboardLayout />} >
+          </Route> */}
+
 
           </Routes>
       </BrowserRouter>
