@@ -59,9 +59,18 @@ function ShareResume() {
 }, []);
 
    useEffect(() => {
+
+    const currentUser = JSON.parse(localStorage.getItem("user"));
+      if (!currentUser || !currentUser._id) {
+        console.warn("No user logged in");
+        return;
+      }
+
+      console.log("currentUser", currentUser);
+
     const fetchLatestResume = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/latest-resume/${currentUser._id}`);
+        const res = await fetch(`http://localhost:3001/latest-resume?userId=${currentUser._id}`);
         if (!res.ok) throw new Error("No resume found");
         const data = await res.json();
         setActiveResume(data);

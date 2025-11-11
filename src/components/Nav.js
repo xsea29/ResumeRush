@@ -1,10 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { MdLogout } from "react-icons/md";
 
 
 
 function Nav() {
+
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    // ✅ Remove user data (localStorage/sessionStorage)
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
+    // Optionally clear sessionStorage if you use it
+    sessionStorage.clear();
+
+    // ✅ Redirect to login
+    navigate("/login");
+  };
+
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const userEmail = currentUser?.email || "User";
+  
   return (
     <nav className="nav">
       <div className="flex nav-content">
@@ -21,11 +39,11 @@ function Nav() {
           <button type="button" className="btn btn-primary"><Link to='/register' style={{color: "#fff", textDecoration: 'none'}}>Get started</Link></button>
         </div> */}
         <div className="flex nav-actions">
-          <p style={{marginBottom: "0"}}>xyz@gmail.com</p>
+          <p style={{marginBottom: "0"}}>{userEmail}</p>
           <button type="button" className="sign-out">
   <Link to='/login' className="sign-out-link">
     <MdLogout size={20} />
-    <span >Sign Out</span>
+    <span onClick={handleSignOut}>Sign Out</span>
   </Link>
 </button>
 

@@ -46,9 +46,11 @@ function Login() {
         navigate('/dashboard');
     }, 2000);
 
-    // if (data.token) {
-    //   localStorage.setItem("token", data.token);
-    // }
+    if (data.token && data.user) {
+  localStorage.setItem("token", data.token);
+  localStorage.setItem("user", JSON.stringify(data.user));
+}
+
 
   } catch (error) {
     console.error("Error during login:", error);

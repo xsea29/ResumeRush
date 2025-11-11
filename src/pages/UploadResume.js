@@ -7,7 +7,10 @@ function UploadResume() {
   const [fileName, setFileName] = useState("");
   const [file, setFile] = useState(null);
 
-  
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+
+  console.log(currentUser._id);  
+console.log(currentUser.email);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -30,7 +33,11 @@ function UploadResume() {
   const formData = new FormData();
   formData.append("resume", file);
   formData.append("title", resumeTitle);
-formData.append("userId", currentUser._id); 
+  formData.append("userId", currentUser._id);
+  
+  for (let [key, value] of formData.entries()) {
+  console.log(key, value);
+}
 
 
   try {
