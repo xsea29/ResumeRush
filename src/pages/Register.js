@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import Loader from "../components/Loader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
     const [name, setName] = useState("");
@@ -9,6 +9,7 @@ function Register() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,15 +19,13 @@ function Register() {
     return () => clearTimeout(timer); 
   }, []);
 
-    const handleSubmit=(e)=>{
+    const handleSubmit= async(e)=>{
         e.preventDefault();
 
         if (!name || !email || !password || !confirmPassword) {
       toast.error("All fields are required!");
       return;
     }
-
-
         if(password.length < 8){
             toast.error("Password must be at least 8 characters long!");
             return;
@@ -37,8 +36,35 @@ function Register() {
             return;
         }
 
-        console.log({email: email, password: password});
-        toast.success("Account Created successfully!");
+       try {
+    const response = await fetch("http://localhost:3001/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      toast.error(data.message || "Something went wrong!");
+     
+    }
+
+    toast.success("Account Created Successfully!");
+     setTimeout(()=>{
+navigate('/login');
+    }, 2000);
+
+  } catch (err) {
+    console.error(err);
+    toast.error("Server error. Please try again.");
+  }
             
     }
     return (
@@ -55,7 +81,7 @@ function Register() {
                 <label>Full Name</label>
                 <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Tushar Tripathi"  />
                 <label>Email</label>
-                <input type="text" name="username" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="xyz@gmail.com"  />
+                <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="xyz@gmail.com"  />
                 <label>Password</label>
                 <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="******" style={{marginBottom: "0"}} />
                 <span style={{fontSize: ".7rem", color:"#aaa", marginBottom:"8px"}}>Must be at least 8 characters long</span>

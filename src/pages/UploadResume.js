@@ -1,14 +1,62 @@
 import React, { useState } from "react";
 import { FaUpload, FaInfoCircle } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 function UploadResume() {
   const [resumeTitle, setResumeTitle] = useState("");
   const [fileName, setFileName] = useState("");
+  const [file, setFile] = useState(null);
+
+  
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) setFileName(file.name);
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setFileName(selectedFile.name);
+      setResumeTitle(selectedFile.name.replace(/\.[^/.]+$/, "")); 
+    }
   };
+
+
+  const handleUpload = async (e) => {
+  e.preventDefault();
+
+  if (!file) {
+    toast.warning("Please select a file to upload.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("resume", file);
+  formData.append("title", resumeTitle);
+formData.append("userId", currentUser._id); 
+
+
+  try {
+    const response = await fetch("http://localhost:3001/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      toast.success("File uploaded successfully!");
+
+      localStorage.setItem("activeResume", JSON.stringify(data.file));
+
+      setFile(null);
+      setFileName("");
+      setResumeTitle("");
+    } else {
+      toast.error(data.message || "Failed to upload the file.");
+    }
+  } catch (error) {
+    console.error("Error uploading file:", error);
+    toast.error("Something went wrong while uploading.");
+  }
+};
 
   return (
     <div className="upload-container">
@@ -27,7 +75,7 @@ function UploadResume() {
         <input
           type="text"
           placeholder="e.g., Software Engineer Resume 2024"
-          value={resumeTitle}
+          value={resumeTitle || fileName}
           onChange={(e) => setResumeTitle(e.target.value)}
         />
         <p className="hint-text">
@@ -66,8 +114,8 @@ function UploadResume() {
         </div>
 
         <div className="button-row">
-          <button className="cancel-btn">Cancel</button>
-          <button className="upload-btn" disabled>
+          <button className="cancel-btn" onClick={() => window.location.reload()}>Cancel</button>
+          <button className="upload-btn" onClick={handleUpload}>
             <FaUpload /> Upload Resume
           </button>
         </div>

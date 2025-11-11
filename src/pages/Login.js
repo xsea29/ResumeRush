@@ -1,12 +1,13 @@
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import Loader from "../components/Loader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,12 +17,45 @@ function Login() {
     return () => clearTimeout(timer); 
   }, []);
 
-    const handleSubmit=(e)=>{
-        e.preventDefault();
+   const handleSubmit = async (e) => {
+  e.preventDefault();
 
-        console.log({email: email, password: password});
-        toast.success("Login successful!");
+  if (!email || !password) {
+    toast.error("Both email and password are required!");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:3001/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      toast.error(data.message || "Invalid email or password!");
+      return;
     }
+
+    toast.success("Login successful! 🎉");
+    setTimeout(()=>{
+        navigate('/dashboard');
+    }, 2000);
+
+    // if (data.token) {
+    //   localStorage.setItem("token", data.token);
+    // }
+
+  } catch (error) {
+    console.error("Error during login:", error);
+    toast.error("Something went wrong. Try again!");
+  }
+};
+
     return (
         isLoading ? <Loader /> : (
             <div className="login-container gradient-wrapper">
